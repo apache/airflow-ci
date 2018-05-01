@@ -26,16 +26,13 @@ RUN apt-get update && apt-get install -y \
     python-pip \
     python3-pip \
     git \
-    slapd \
     ldap-utils \
-    openssh-server \
     mysql-client-core-5.7 \
     mysql-client-5.7 \
     postgresql-client \
     krb5-user \
     krb5-kdc \
-    krb5-admin-server \
-    openssh-client openssh-server \
+    openssh-client \
     python-selinux
 
 RUN pip install --upgrade pip && \
