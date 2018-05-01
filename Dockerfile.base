@@ -31,7 +31,6 @@ RUN apt-get update && apt-get install -y \
     mysql-client-5.7 \
     postgresql-client \
     krb5-user \
-    krb5-kdc \
     openssh-client \
     python-selinux
 
