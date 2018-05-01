@@ -27,8 +27,8 @@ jobs:
   include:
     - stage: build airflow-testing docker image
       script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -f Dockerfile.base -t airflow-testing .
-      - docker images
-      - docker tag airflow-testing $DOCKER_USERNAME/airflow-testing
-      - docker push $DOCKER_USERNAME/airflow-testing
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -f Dockerfile.base -t airflow-testing .
+        - docker images
+        - docker tag airflow-testing $DOCKER_USERNAME/airflow-testing
+        - docker push $DOCKER_USERNAME/airflow-testing
