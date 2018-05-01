@@ -36,6 +36,6 @@ RUN apt-get update && apt-get install -y \
     openssh-client \
     python-selinux
 
-RUN pip install --upgrade pip && \
+RUN pip install --upgrade --user pip && \
     hash -r pip && \
     pip install tox codecov
