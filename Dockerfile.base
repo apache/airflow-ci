@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
     python-pip \
     python3-pip \
     git \
+    unzip \
     ldap-utils \
     mysql-client-core-5.7 \
     mysql-client-5.7 \
