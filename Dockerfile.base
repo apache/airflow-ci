@@ -31,8 +31,13 @@ RUN apt-get update && apt-get install -y \
     ldap-utils \
     mysql-client-core-5.7 \
     mysql-client-5.7 \
+    libmysqlclient-dev \
     postgresql-client \
+    libkrb5-dev \
+    libsasl2-dev \
     krb5-user \
+    krb5-kdc \
+    krb5-admin-server \
     openssh-client \
     python-selinux
 
