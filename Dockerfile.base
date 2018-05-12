@@ -38,8 +38,6 @@ RUN apt-get update && apt-get install -y \
     libkrb5-dev \
     libsasl2-dev \
     krb5-user \
-    krb5-kdc \
-    krb5-admin-server \
     openssh-client \
     python-selinux
 
