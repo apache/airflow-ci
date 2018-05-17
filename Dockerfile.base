@@ -21,25 +21,34 @@
 FROM ubuntu:xenial
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV LANGUAGE en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV LC_CTYPE en_US.UTF-8
+ENV LC_MESSAGES en_US.UTF-8
 
 RUN apt-get update && apt-get install -y \
-    openjdk-8-jdk \
-    wget curl \
-    python-pip \
-    python3-pip \
-    git \
-    unzip \
-    sudo \
-    ldap-utils \
-    mysql-client-core-5.7 \
-    mysql-client-5.7 \
-    libmysqlclient-dev \
-    postgresql-client \
-    libkrb5-dev \
-    libsasl2-dev \
-    krb5-user \
-    openssh-client \
-    python-selinux
+      openjdk-8-jdk \
+      wget curl \
+      python-pip \
+      python3-pip \
+      git \
+      unzip \
+      sudo \
+      ldap-utils \
+      mysql-client-core-5.7 \
+      mysql-client-5.7 \
+      libmysqlclient-dev \
+      postgresql-client \
+      libkrb5-dev \
+      libsasl2-dev \
+      krb5-user \
+      openssh-client \
+      python-selinux \
+      locales \
+    && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
+    && locale-gen \
+    && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 RUN pip install --upgrade pip && \
     hash -r pip && \
