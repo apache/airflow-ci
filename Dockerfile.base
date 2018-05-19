@@ -75,7 +75,7 @@ RUN cd /tmp && \
 # Install MiniCluster
 RUN cd /tmp && \
     wget -q https://github.com/bolkedebruin/minicluster/releases/download/1.1/minicluster-1.1-SNAPSHOT-bin.zip && \
-    unzip minicluster-1.1-SNAPSHOT-bin.zip -d /tmp
+    unzip minicluster-1.1-SNAPSHOT-bin.zip -d /tmp && \
     rm minicluster-1.1-SNAPSHOT-bin.zip
 
 RUN pip install --upgrade pip && \
