@@ -36,7 +36,9 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 RUN  mkdir ${HADOOP_HOME} && \
      mkdir ${HIVE_HOME}  && \
      mkdir /tmp/minicluster  && \
-     mkdir -p /user/hive/warehouse
+     mkdir -p /user/hive/warehouse \
+     chmod -R 777 ${HIVE_HOME} \
+     chmod -R 777 /user/
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
       openjdk-8-jdk \
