@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       openjdk-8-jdk \
       wget curl \
       gcc \
+      g++ \
       python-dev \
       python-pip \
       python3-pip \
