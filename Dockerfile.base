@@ -43,6 +43,8 @@ RUN  mkdir ${HADOOP_HOME} && \
 RUN apt-get update && apt-get install --no-install-recommends -y \
       openjdk-8-jdk \
       wget curl \
+      gcc \
+      python-dev \
       python-pip \
       python3-pip \
       python-setuptools \
