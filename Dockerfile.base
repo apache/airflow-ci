@@ -31,6 +31,7 @@ ENV HADOOP_VERSION 2.6.0
 ENV HADOOP_DISTRO=cdh
 ENV HADOOP_HOME=/tmp/hadoop-${HADOOP_DISTRO}
 ENV HIVE_HOME=/tmp/hive
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 RUN  mkdir ${HADOOP_HOME} && \
      mkdir ${HIVE_HOME}  && \
