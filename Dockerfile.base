@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       gcc \
       g++ \
       python-dev \
+      python3-dev \
       python-pip \
       python3-pip \
       python-setuptools \
