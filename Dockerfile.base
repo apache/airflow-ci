@@ -100,4 +100,5 @@ RUN adduser airflow && \
     echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
+WORKDIR /home/airflow
 USER airflow
