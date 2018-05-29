@@ -20,6 +20,8 @@
 
 FROM ubuntu:xenial
 
+USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -93,3 +95,9 @@ RUN cd /tmp && \
 RUN pip install --upgrade pip && \
     hash -r pip && \
     pip install tox codecov
+
+RUN adduser airflow && \
+    echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
+    chmod 0440 /etc/sudoers.d/airflow
+
+USER airflow
