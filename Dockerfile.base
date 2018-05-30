@@ -67,6 +67,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       openssh-client \
       openssh-server \
       python-selinux \
+      sasl2-bin \
+      libsasl2-2 \
+      libsasl2-dev \
+      libsasl2-modules \
       locales \
     && rm -rf /var/lib/apt/lists/*
 
