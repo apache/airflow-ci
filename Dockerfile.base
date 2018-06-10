@@ -53,6 +53,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       python3-pip \
       python-setuptools \
       python-pkg-resources \
+      python3-setuptools \
+      python3-pkg-resources \
       git \
       unzip \
       sudo \
@@ -95,10 +97,6 @@ RUN cd /tmp && \
     wget -q https://github.com/bolkedebruin/minicluster/releases/download/1.1/minicluster-1.1-SNAPSHOT-bin.zip && \
     unzip minicluster-1.1-SNAPSHOT-bin.zip -d /tmp && \
     rm minicluster-1.1-SNAPSHOT-bin.zip
-
-RUN pip install --upgrade pip && \
-    hash -r pip && \
-    pip install tox codecov
 
 RUN adduser airflow && \
     echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
