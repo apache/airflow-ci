@@ -103,4 +103,7 @@ RUN adduser airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
 WORKDIR /home/airflow
+
+ENV PATH "$PATH:/tmp/hive/bin"
+
 USER airflow
