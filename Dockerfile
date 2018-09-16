@@ -42,6 +42,12 @@ RUN  mkdir ${HADOOP_HOME} && \
      chmod -R 777 ${HIVE_HOME} && \
      chmod -R 777 /user/
 
+# Add nodejs repo and key
+ADD nodesource.gpg.key /tmp/nodesource.gpg.key
+RUN apt-key add /tmp/nodesource.gpg.key
+RUN echo 'deb http://deb.nodesource.com/node_8.x xenial main' > /etc/apt/sources.list.d/nodesource.list
+RUN echo 'deb-src http://deb.nodesource.com/node_8.x xenial main' >> /etc/apt/sources.list.d/nodesource.list
+
 RUN apt-get update && apt-get install --no-install-recommends -y \
       openjdk-8-jdk \
       wget curl \
@@ -51,10 +57,15 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       python3-dev \
       python-pip \
       python3-pip \
+      python-virtualenv \
+      python3-venv \
       python-setuptools \
       python-pkg-resources \
       python3-setuptools \
       python3-pkg-resources \
+      nodejs \
+      vim \
+      less \
       git \
       unzip \
       sudo \
@@ -63,6 +74,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       mysql-client-5.7 \
       libmysqlclient-dev \
       postgresql-client \
+      sqlite3 \
       libkrb5-dev \
       libsasl2-dev \
       krb5-user \
@@ -101,6 +113,8 @@ RUN cd /tmp && \
 RUN adduser airflow && \
     echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
     chmod 0440 /etc/sudoers.d/airflow
+
+EXPOSE 8080
 
 WORKDIR /home/airflow
 
