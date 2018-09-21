@@ -115,8 +115,8 @@ RUN adduser airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
 # Install Python requirements
-RUN pip install --upgrade pip && \
-    pip install wheel tox && \
+RUN sudo -H pip install --upgrade pip && \
+    sudo -H pip install wheel tox && \
     rm -rf ~/.cache
 
 EXPOSE 8080
