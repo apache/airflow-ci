@@ -114,6 +114,11 @@ RUN adduser airflow && \
     echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
+# Install Python requirements
+RUN pip install --upgrade pip && \
+    pip install wheel tox && \
+    rm -rf ~/.cache
+
 EXPOSE 8080
 
 WORKDIR /home/airflow
