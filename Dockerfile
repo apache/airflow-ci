@@ -123,6 +123,6 @@ EXPOSE 8080
 
 WORKDIR /home/airflow
 
-ENV PATH "$PATH:/tmp/hive/bin"
+ENV PATH "$PATH:/tmp/hive/bin:$ADDITIONAL_PATH"
 
 USER airflow
