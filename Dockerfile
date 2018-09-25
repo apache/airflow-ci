@@ -114,10 +114,17 @@ RUN adduser airflow && \
     echo "airflow ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
+# Install Python requirements
+RUN sudo -H pip install --upgrade pip && \
+    sudo -H pip install wheel tox && \
+    sudo -H pip3 install --upgrade pip && \
+    sudo -H pip3 install wheel tox && \
+    rm -rf ~/.cache
+
 EXPOSE 8080
 
 WORKDIR /home/airflow
 
-ENV PATH "$PATH:/tmp/hive/bin"
+ENV PATH "$PATH:/tmp/hive/bin:$ADDITIONAL_PATH"
 
 USER airflow
