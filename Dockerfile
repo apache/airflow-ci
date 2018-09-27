@@ -63,6 +63,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       python-pkg-resources \
       python3-setuptools \
       python3-pkg-resources \
+      make \
       nodejs \
       vim \
       less \
@@ -93,9 +94,10 @@ RUN sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Install Hadoop
+# --absolute-names is a work around to avoid this issue https://github.com/docker/hub-feedback/issues/727
 RUN cd /tmp && \
     wget -q https://archive.cloudera.com/cdh5/cdh/5/hadoop-${HADOOP_VERSION}-cdh5.11.0.tar.gz && \
-    tar xzf hadoop-${HADOOP_VERSION}-cdh5.11.0.tar.gz --strip-components 1 -C $HADOOP_HOME && \
+    tar xzf hadoop-${HADOOP_VERSION}-cdh5.11.0.tar.gz --absolute-names --strip-components 1 -C $HADOOP_HOME && \
     rm hadoop-${HADOOP_VERSION}-cdh5.11.0.tar.gz
 
 # Install Hive
