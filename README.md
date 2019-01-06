@@ -1,4 +1,4 @@
-# Apache Airflow (Incubating) CI Docker Repository
+# Apache Airflow CI Docker Repository
 
 **Do not use this image for production**
 
