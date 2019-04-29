@@ -18,7 +18,7 @@
 # WARNING: THIS DOCKERFILE IS NOT INTENDED FOR PRODUCTION USE OR DEPLOYMENT. AT
 #          THIS POINT, THIS IS ONLY INTENDED FOR USE IN AUTOMATED TESTS.
 
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 USER root
 
@@ -42,34 +42,23 @@ RUN  mkdir ${HADOOP_HOME} && \
      chmod -R 777 ${HIVE_HOME} && \
      chmod -R 777 /user/
 
-# Add nodejs repo and key
-ADD nodesource.gpg.key /tmp/nodesource.gpg.key
-RUN apt-key add /tmp/nodesource.gpg.key
-RUN echo 'deb http://deb.nodesource.com/node_8.x xenial main' > /etc/apt/sources.list.d/nodesource.list
-RUN echo 'deb-src http://deb.nodesource.com/node_8.x xenial main' >> /etc/apt/sources.list.d/nodesource.list
-
 RUN apt-get update && apt-get install --no-install-recommends -y \
       openjdk-8-jdk \
       wget curl \
       gcc \
       g++ \
-      python-dev \
       python3-dev \
-      python-pip \
       python3-pip \
-      python-virtualenv \
       python3-venv \
-      python-setuptools \
-      python-pkg-resources \
       python3-setuptools \
       python3-pkg-resources \
       make \
-      nodejs \
       vim \
       less \
       git \
       unzip \
       sudo \
+      gnupg \
       ldap-utils \
       mysql-client-core-5.7 \
       mysql-client-5.7 \
@@ -86,7 +75,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       libsasl2-2 \
       libsasl2-dev \
       libsasl2-modules \
-      locales \
+      tzdata \
+      locales && \
+      # Add nodejs repo and key
+      curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - && \
+      echo 'deb http://deb.nodesource.com/node_8.x bionic main' > /etc/apt/sources.list.d/nodesource.list && \
+      echo 'deb-src http://deb.nodesource.com/node_8.x bionic main' >> /etc/apt/sources.list.d/nodesource.list && \
+      apt-get update && apt-get install nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
@@ -117,10 +112,8 @@ RUN adduser airflow && \
     chmod 0440 /etc/sudoers.d/airflow
 
 # Install Python requirements
-RUN sudo -H pip install --upgrade pip && \
-    sudo -H pip install wheel tox && \
-    sudo -H pip3 install --upgrade pip && \
-    sudo -H pip3 install wheel tox && \
+RUN sudo -H pip3 install --upgrade pip && \
+    sudo -H pip3 install wheel tox virtualenv && \
     rm -rf ~/.cache
 
 EXPOSE 8080
