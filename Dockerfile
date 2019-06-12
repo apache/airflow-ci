@@ -87,7 +87,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       libsasl2-dev \
       libsasl2-modules \
       locales \
+      r-base \
     && rm -rf /var/lib/apt/lists/*
+
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
 
 RUN sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
