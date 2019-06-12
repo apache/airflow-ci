@@ -124,7 +124,6 @@ RUN sudo -H pip install --upgrade pip && \
     sudo -H pip install wheel tox && \
     sudo -H pip3 install --upgrade pip && \
     sudo -H pip3 install wheel tox && \
-    sudo -H pip3 install rpy2 && \
     rm -rf ~/.cache
 
 EXPOSE 8080
